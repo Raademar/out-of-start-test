@@ -1,0 +1,11 @@
+type Order {
+  id: ID!
+  processed: Boolean!
+  items: [Item]
+  creationDate: Int!
+  endDate: Int!
+}
+
+type Query {
+  GetCurrentOrder: Order
+}

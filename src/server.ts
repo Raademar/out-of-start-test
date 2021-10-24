@@ -1,7 +1,9 @@
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
+import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import { schema } from "./graphql";
 import { connectToDb } from "./db";
+import { fetchAndRunInitOfProductImageUrlMemory } from "./utils";
 
 const port = 4000;
 
@@ -11,11 +13,15 @@ async function initServer() {
 
     const server = new ApolloServer({
       schema,
+      context: async ({ req, res }) => ({ req, res }),
+      plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
     });
     const app = express();
 
     await server.start();
     server.applyMiddleware({ app });
+
+    await fetchAndRunInitOfProductImageUrlMemory();
 
     app.listen({ port }, () => {
       console.log(

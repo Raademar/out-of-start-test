@@ -2,9 +2,13 @@ type Item {
   id: ID!
   name: String!
   productUrl: String!
-  productImage: String
+  productImageUrl: String!
 }
 
 type Query {
   GetItem: Item
+}
+
+type Mutation {
+  AddItem(productUrl: String!): Boolean
 }

@@ -5,14 +5,14 @@ type ProductImageUrlItem = {
   productImageUrl: string;
 };
 
-export const productImageUrlMap = new Map<string, string>();
+const productImageUrlMap = new Map<string, string>();
 
 export function isInProductImageUrlMap(productUrl: string) {
   return productImageUrlMap.has(productUrl);
 }
 
 export function getFromProductImageUrlMap(productUrl: string) {
-  return productImageUrlMap.get(productUrl);
+  return productImageUrlMap.get(productUrl) as string;
 }
 
 export function setToProductImageUrlMap(
@@ -22,6 +22,10 @@ export function setToProductImageUrlMap(
   productImageUrlMap.set(productUrl, productImageUrl);
 
   return isInProductImageUrlMap(productUrl);
+}
+
+export function getLengthOfProductImageUrlMap() {
+  return productImageUrlMap.size;
 }
 
 function initProductImageUrlMemory(itemsToInit: ProductImageUrlItem[]) {

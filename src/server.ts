@@ -3,7 +3,10 @@ import { ApolloServer } from "apollo-server-express";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import { schema } from "./graphql";
 import { connectToDb } from "./db";
-import { fetchAndRunInitOfProductImageUrlMemory } from "./utils";
+import {
+  fetchAndRunInitOfProductImageUrlMemory,
+  getLengthOfProductImageUrlMap,
+} from "./utils";
 
 const port = 4000;
 
@@ -22,6 +25,8 @@ async function initServer() {
     server.applyMiddleware({ app });
 
     await fetchAndRunInitOfProductImageUrlMemory();
+
+    console.log(`in memory size: ${getLengthOfProductImageUrlMap()}`);
 
     app.listen({ port }, () => {
       console.log(

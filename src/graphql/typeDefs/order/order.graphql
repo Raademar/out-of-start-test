@@ -9,3 +9,7 @@ type Order {
 type Query {
   GetCurrentOrder: Order
 }
+
+type Mutation {
+  AddOrderItem(name: String!, productUrl: String!): Item
+}

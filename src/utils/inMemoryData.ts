@@ -20,8 +20,6 @@ export function setToProductImageUrlMap(
   productImageUrl: string
 ) {
   productImageUrlMap.set(productUrl, productImageUrl);
-
-  return isInProductImageUrlMap(productUrl);
 }
 
 export function getLengthOfProductImageUrlMap() {
